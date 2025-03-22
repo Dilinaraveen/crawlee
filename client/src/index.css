@@ -41,6 +41,11 @@
   
   .rich-text li { margin-bottom: 8px; }
 
+  .grid-cols-auto-var {
+    display: grid;
+    grid-template-columns: var(--grid-cols-auto);
+  }
+  
   @theme {
     --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
     --spacing-section-height: 500px;
