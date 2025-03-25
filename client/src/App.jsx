@@ -11,6 +11,9 @@ import AddCourse from "./pages/educator/AddCourse"
 import MyCourses from "./pages/educator/MyCourses"
 import StudentsEnrolled from "./pages/educator/StudentsEnrolled"
 import Navbar from "./components/students/Navbar"
+import EmailVerify from "./pages/login/EmailVerify"
+import ResetPassword from "./pages/login/ResetPassword"
+import Login from "./pages/login/Login"
 
 function App() {
 
@@ -23,6 +26,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/course-list" element={<CourseList />} />
         <Route path="/course-list/:input" element={<CourseList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/email-verify" element={<EmailVerify />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
 
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/my-enrollments" element={<MyEnrollments />} />

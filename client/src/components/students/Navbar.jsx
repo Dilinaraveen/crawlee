@@ -11,7 +11,7 @@ function Navbar() {
 
     const isCoursesListPage= location.pathname.includes( '/course-list' );
 
-    const user = true;
+    const user = false;
 
     return (
         <div className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCoursesListPage ? 'bg-white' : 'bg-cyan-100/70'}`}>
@@ -27,7 +27,7 @@ function Navbar() {
         </div>
         {user
           ? <div>User Button</div>
-          : <button  className="bg-blue-600 text-white px-5 py-2 rounded-full">
+          : <button  onClick={()=>navigate('/login')} className="bg-blue-600 text-white px-5 py-2 rounded-full">
             Create Account
           </button>}
       </div>
