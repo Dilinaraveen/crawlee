@@ -14,6 +14,9 @@ import Navbar from "./components/students/Navbar"
 import EmailVerify from "./pages/login/EmailVerify"
 import ResetPassword from "./pages/login/ResetPassword"
 import Login from "./pages/login/Login"
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 
 function App() {
 
@@ -22,6 +25,7 @@ function App() {
   return (
     <div className="text-default min-h-screen bg-white">
       {!isEducatorRoute && <Navbar />}
+      <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/course-list" element={<CourseList />} />
