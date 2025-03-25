@@ -11,6 +11,9 @@ function Navbar() {
 
     const isCoursesListPage= location.pathname.includes( '/course-list' );
 
+    const {userData} = useContext(AppContext);
+  
+
     const user = true;
 
     return (
@@ -25,8 +28,9 @@ function Navbar() {
             </>
           }
         </div>
-        {user
-          ? <div>User Button</div>
+       
+        {userData
+          ? <div>{userData.name}</div>
           : <button  onClick={()=>navigate('/login')} className="bg-blue-600 text-white px-5 py-2 rounded-full">
             Create Account
           </button>}
@@ -39,8 +43,8 @@ function Navbar() {
             user && <Link to='/my-enrollments' >My Enrollments</Link>
           }
         </div>
-        {user
-          ? <div>User Button</div>
+        {userData
+          ? <div>{userData.name}</div>
           : <button >
             <img src={assets.user_icon} alt="" />
           </button>}

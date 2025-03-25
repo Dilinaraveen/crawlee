@@ -1,6 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import { dummyCourses } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+
+
 
 export const AppContext = createContext();
 
@@ -17,7 +22,16 @@ export const AppContextProvider = (props) => {
     const [isLoggedin, setIsLoggedin] = useState(false)
     const [userData, setUserData] = useState(false)
 
-
+    const getUserData = async () => {
+        try {
+            const res = await axios.get(backendUrl + "/api/user/data");
+            const data = res.data;
+            data.success ? setUserData(data.userData) : toast.error(data.message)
+        } catch (error) {
+            console.log(error.response?.data || error.message);  
+            toast.error(error.response?.data?.message || "An error occurred");
+        }
+    }
 
     //Fetch all courses
     const fetchAllCourses = async () => {
@@ -54,7 +68,8 @@ export const AppContextProvider = (props) => {
         isLoggedin,
         setIsLoggedin,
         userData,
-        setUserData
+        setUserData,
+        getUserData
     }
 
     return (
