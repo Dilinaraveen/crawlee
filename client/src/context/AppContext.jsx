@@ -11,6 +11,8 @@ export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
 
+    axios.defaults.withCredentials = true;
+
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const currency = import.meta.env.VITE_CURRENCY
@@ -46,10 +48,12 @@ export const AppContextProvider = (props) => {
         }
     }
 
+   
     //Fetch all courses
     const fetchAllCourses = async () => {
         setAllCourses(dummyCourses)
     }
+
 
     //Function to calculate average rating of course
     const calculateRating = (course) => {

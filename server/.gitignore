@@ -7,3 +7,4 @@ dist-ssr
 package.json
 package-lock.json
 
+.env
