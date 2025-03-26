@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 import transporter from '../config/nodeMailer.js';
+import {EMAIL_VERIFY_TEMPLATE,PASSWORD_RESET_TEMPLATE} from '../config/emailTemplates.js'
 
 
 export const register = async (req, res) => {
@@ -123,7 +124,8 @@ export const sendVerifyOtp = async (req, res) => {
             from: process.env.SENDER_EMAIL,
             to: user.email,
             subject: `Account Verification OTP`,
-            text: `Your OTP is ${otp}. Verify your account using this OTP.`
+            //text: `Your OTP is ${otp}. Verify your account using this OTP.`
+            html:EMAIL_VERIFY_TEMPLATE.replace("{{otp}}",otp).replace("{{email}}",user.email)
         };
         await transporter.sendMail(mailOptions);
         return res.json({ success: true, message: 'Verification OTP Sent on Email' });
@@ -166,10 +168,10 @@ export const verifyEmail = async (req, res) => {
 //check if user is authenticated
 export const isAuthenticated = async (req, res) => {
     try {
-        console.log("success")
+       
         return res.json({ success: true });
     } catch (error) {
-        console.log(" not success")
+       
         return res.json({ success: false, message: error.message });
 
     }
@@ -199,13 +201,14 @@ export const sendResetOtp = async (req, res) => {
             from: process.env.SENDER_EMAIL,
             to: user.email,
             subject: `Password Reset OTP`,
-            text: `Your OTP for resetting your password is ${otp}. Use this OTP to proceed with resetting your password.`
+           // text: `Your OTP for resetting your password is ${otp}. Use this OTP to proceed with resetting your password.`
+           html:PASSWORD_RESET_TEMPLATE.replace("{{otp}}",otp).replace("{{email}}",user.email)
         };
         await transporter.sendMail(mailOptions);
         return res.json({ success: true, message: 'OTP Sent to your Email' });
 
     } catch (error) {
-        console.log(" not success")
+        
         return res.json({ success: false, message: error.message });
 
     }
@@ -223,11 +226,7 @@ export const resetPassword = async (req, res) => {
             return res.json({ success: false, message: "User not found" });
 
         }
-        console.log("Stored OTP in DB:", user.resetOtp);
-        console.log("User Entered OTP:", otp);
-        console.log("OTP Expiry Time:", user.resetOtpExpireAt);
-        console.log("Current Time:", Date.now());
-
+        
         if (!user.resetOtp === "" || user.resetOtp.toString() !== otp.toString()) {
             return res.json({ success: false, message: 'Invalid OTP' });
         }
@@ -247,7 +246,7 @@ export const resetPassword = async (req, res) => {
 
 
     } catch (error) {
-        console.log("not success")
+       
         return res.json({ success: false, message: error.message });
 
     }

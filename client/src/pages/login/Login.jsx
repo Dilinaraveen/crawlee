@@ -37,7 +37,6 @@ const Login = () => {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            console.error("Login error:", error);
             toast.error(error.response?.data?.message || "Something went wrong");
         }
     }
@@ -51,7 +50,7 @@ const Login = () => {
                 <p className="text-center text-sm mb-6">{state === 'Sign Up' ? 'Create your account' : 'Login to your account!'}</p>
                 <form onSubmit={onSubmitHandler}>
                     {state === 'Sign Up' && (<div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#333A5C]'>
-                        <img src={assets.user_icon} alt="" className="filter invert" />
+                        <img src={assets.person_icon} alt=""  />
                         <input
                             onChange={e => setName(e.target.value)}
                             value={name}
@@ -60,7 +59,7 @@ const Login = () => {
                             placeholder="Full name" required />
                     </div>)}
                     <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#333A5C]'>
-                        <img src={assets.add_icon} alt="" className="filter invert" />
+                        <img src={assets.mail_icon} alt=""  />
                         <input
                             onChange={e => setEmail(e.target.value)}
                             value={email}
@@ -69,7 +68,7 @@ const Login = () => {
                             placeholder="Email ID" required />
                     </div>
                     <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#333A5C]'>
-                        <img src={assets.cross_icon} alt="" className="filter invert" />
+                        <img src={assets.lock_icon} alt=""  />
                         <input
                             onChange={e => setPassword(e.target.value)}
                             value={password}
