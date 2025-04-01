@@ -4,3 +4,7 @@ dist
 dist-ssr
 *.local
 
+package.json
+package-lock.json
+
+.env

@@ -42,6 +42,10 @@ import profile_img from './profile_img.png'
 import profile_img2 from './profile_img2.png'
 import profile_img3 from './profile_img3.png'
 import lesson_icon from './lesson_icon.svg'
+import mail_icon from './mail_icon.svg'
+import lock_icon from './lock_icon.svg'
+import person_icon from './person_icon.svg'
+
 
 
 export const assets = {
@@ -49,6 +53,7 @@ export const assets = {
     search_icon,
     sketch,
     microsoft_logo,
+    mail_icon,
     walmart_logo,
     accenture_logo,
     adobe_logo,
@@ -64,9 +69,11 @@ export const assets = {
     profile_img_3,
     arrow_icon,
     dropdown_icon,
+    person_icon,
     cross_icon,
     upload_area,
     logo_dark,
+    lock_icon,
     down_arrow_icon,
     time_left_clock_icon,
     time_clock_icon,
